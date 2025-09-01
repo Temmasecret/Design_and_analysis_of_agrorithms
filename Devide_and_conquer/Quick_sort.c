@@ -8,7 +8,7 @@ void Swap(int *a, int *b)
     *a = *b;
     *b = tg;
 }
-
+/*
 void Quick_sort(int arr[],int l,int r)
 {
     if (l>=r) return;
@@ -21,6 +21,27 @@ void Quick_sort(int arr[],int l,int r)
         while (j > l && arr[j] >= temp) j--;
         while (i < r && arr[i] <= temp) i++;
         if (i < j) Swap(&arr[i],&arr[j]);
+    }
+    Swap(&arr[l],&arr[j]);
+    Quick_sort(arr,l,j-1);
+    Quick_sort(arr,j+1,r);
+}
+*/
+
+void Quick_sort(int arr[], int l, int r)
+{
+    if (l >= r) return;
+    int temp = arr[l];
+    int i = l + 1;
+    int j = r;
+    while (i<j )
+    {
+        while (i <r && arr[i] < temp) i++;
+        while (j >l && arr[j] > temp) j--;
+        if (i<j)
+        {
+            Swap(&arr[i], &arr[j]);
+        }
     }
     Swap(&arr[l],&arr[j]);
     Quick_sort(arr,l,j-1);
