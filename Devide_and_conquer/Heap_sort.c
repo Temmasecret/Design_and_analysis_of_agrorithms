@@ -50,15 +50,15 @@ void Heapify(int arr[], int l,int r, int index)
     if (Num_1 <= r)
     {
         Heapify(arr,l,r,Num_1);
-        if (arr[Num_1] >= arr[index])
+        if (arr[Num_1] > arr[index])
         {
-            Swap(&arr[Num_1],&arr[Num_2]);
+            Swap(&arr[Num_1],&arr[index]);
         }
     }
     if (Num_2 <= r)
     {
         Heapify(arr,l,r,Num_2);
-        if(arr[Num_2] >= arr[index])
+        if(arr[Num_2] > arr[index])
         {
             Swap(&arr[Num_2], &arr[index]);
         }
