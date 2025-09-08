@@ -114,7 +114,35 @@ Result Max_sub_arr_O_n(int arr[],int l, int r)
     }
     return res;
     
-}    
+}
+
+int Bp_co_lap(int num,int Num_pow,int q)
+{
+    int bin[100];
+    int Num_bin = 0;
+    memset(bin,0,sizeof(bin));
+    while (Num_pow > 0)
+    {
+        bin[Num_bin] = Num_pow%2;
+        Num_bin ++;
+        Num_pow /= 2;
+    }
+    int a = 1;
+    if (bin[0] == 1) a = num;
+    for (int i = 1;i<Num_bin;i++)
+    {
+        a = (a*a)%q;
+        if (bin[i]) num = (num*a)%q;
+    }
+    return num;
+}
+
+long int Pow_so_lon(long int num, int Num_pow)
+{
+    if (Num_pow == 0) return 1;
+    else if (Num_pow % 2 ==0 ) return Pow_so_lon(num * num, Num_pow/2);
+    else return num * Pow_so_lon(num*num,Num_pow/2);
+}
 // int** mul_same_perfect_array(int **arr1,int **arr2, int n)
 // {
 //     int** arr_mul = (int **)malloc(sizeof(int*)*n);
@@ -148,5 +176,8 @@ int main()
     res = Max_sub_arr_O_n(A,0,9);
     printf("The max value of sub array is %d\n",res.sum);
     printf("The sub arr max from %d to %d \n",res.begin,res.end);
+    printf("Ta co pow(34,107,59) = %d\n",Bp_co_lap(34,107,59));
+    long int a = 3;
+    printf("pow(3,16) = %ld\n",Pow_so_lon(3,16));
     return 0;
 }

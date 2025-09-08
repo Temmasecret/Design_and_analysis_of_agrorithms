@@ -19,7 +19,7 @@ void Quick_sort(int arr[],int l,int r)
     while (i<j)
     {
         while (j > l && arr[j] >= temp) j--;
-        while (i < r && arr[i] <= temp) i++;
+        while (i    < r && arr[i] <= temp) i++;
         if (i < j) Swap(&arr[i],&arr[j]);
     }
     Swap(&arr[l],&arr[j]);
