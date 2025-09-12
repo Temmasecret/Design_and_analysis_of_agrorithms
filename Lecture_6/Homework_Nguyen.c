@@ -56,11 +56,6 @@ void Heap_sort(int arr[],int l,int r)
     }
 }
 
-int *Bai_Toan_Tui(int num_obj,int weight[], int cost[])
-{
-    int* res = (int *)malloc(sizeof(int) * num_obj);
-
-}
 
 int main()
 {
