@@ -29,13 +29,21 @@ int main()
     while (idx < n)
     {
         int cur_test = 1;
+        int min_sensei = 100000;
         for (int i = 1; i< n;i++)
         {
-            if (check[i] == 0 && cost_remain[i] > cost_remain[cur] + Map[cur][i])
+            if (check[i] == 0 && cost_remain[i] > cost_remain[cur] + Map[cur][i] && cur!=i)
             {
-                cur_test = i;
                 cost_remain[i] = cost_remain[cur] + Map[cur][i];
             } 
+        }
+        for (int i = 1; i<n;i++)
+        {
+            if (min_sensei > cost_remain[i] && check[i] == 0)
+            {
+                cur_test = i;
+                min_sensei = cost_remain[i];
+            }
         }
         cur = cur_test;
         check[cur] = 1;
