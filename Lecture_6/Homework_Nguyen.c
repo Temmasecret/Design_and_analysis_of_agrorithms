@@ -125,9 +125,10 @@ int main()
     {
         int oldpos, newpos;
         float cost;
-        printf("Please sign the old pos, new pos and cost : ");
-        scanf("%d %d %f", &oldpos, &newpos, &cost);
-        printf("Do u want to continue? (1 for yes, 0 for no): ");
+        //printf("Please sign the old pos, new pos and cost : ");
+        scanf("%f %d %d", &cost, &oldpos, &newpos);
+        InsertLast(newpos,cost,Gr->lists[oldpos]);
+        //printf("Do u want to continue? (1 for yes, 0 for no): ");
         scanf("%d", &con);
     }
     float res_cost[6];
@@ -135,13 +136,7 @@ int main()
     {
         res_cost[i] = 10000000000;
     }
-    Node** res_way = (Node**)malloc(sizeof(Node*)*6);
-    for (int i = 0;i<6;i++)
-    {
-        res_way[i] = MakeNode(i);
-    }
     int idx =1;
-    res_way[0] = Gr->lists[0];
     res_cost[0] = 0;
     int visited[6];
     int curr = 0;
@@ -152,57 +147,53 @@ int main()
     visited[curr] = 1;
     while (idx < 6)
     {
-        int min_pos = -1;
-        float min_cost = 10000000000;
         Node* temp = Gr->lists[curr];
+        int min_pos = curr;
         while (temp->next != NULL)
         {
-            if (visited[temp->pos] == 0 && temp->cost + res_cost[curr] < min_cost)
+            if (visited[temp->next->pos] == 0 && res_cost[temp->next->pos] > res_cost[curr] + temp->cost && temp->next->pos != curr )
             {
-                min_pos = temp->pos;
-                min_cost = temp->cost + res_cost[curr];
+                //printf("%d %d %d\n",temp->next->pos,curr,idx);
+                res_cost[temp->next->pos] = res_cost[curr] + temp->cost;
             }
             temp = temp->next;
-        }   
-        InsertLast(min_pos, min_cost, res_way[curr]);
-        visited[min_pos] = 1;
-        res_cost[min_pos] = min_cost;
-        idx++;
-        curr = min_pos;
-        if (curr == -1)
-        {
-            break;
         }
+        temp = Gr->lists[curr];
+        float Min_cost = 10000000;
+        while (temp ->next!= NULL)
+        {
+            if (Min_cost > res_cost[temp->next->pos] && visited[temp->next->pos] == 0 )
+            {
+                Min_cost = res_cost[temp->next->pos];
+                min_pos = temp->next->pos;
+            }
+            temp = temp->next;
+        }
+        curr = min_pos;
+        visited[curr] = 1;
+        idx++;
     }
     for (int i = 0;i<6;i++)
     {
-        printf("Cost from 0 to %d is %.2f\n", i, res_cost[i]);
-        Node* temp = res_way[i];
-        printf("Path to %d: ", i);
-        while (temp != NULL)
-        {
-            printf("%d ", temp->pos);
-            temp = temp->next;
-        }
-        printf("\n");
+        printf("%.2f ",res_cost[i]);
     }
 }
 /*
-    20 0 1
-    15 0 2
-    80 0 4
-    40 1 0
-    10 1 4
-    30 1 5
-    20 2 0
-    4 2 1
-    10 2 5
-    36 3 0
-    18 3 1
-    15 3 2
-    90 4 2
-    15 4 3
-    45 5 2
-    4 5 3
-    10 5 4
+    20 0 1 1
+    15 0 2 1
+    80 0 4 1
+    40 1 0 1
+    10 1 4 1
+    30 1 5 1
+    20 2 0 1
+    4 2 1 1
+    10 2 5 1
+    36 3 0 1
+    18 3 1 1
+    15 3 2 1
+    90 4 2 1
+    15 4 3 1
+    45 5 2 1
+    4 5 3 1
+    10 5 4 0
 */
