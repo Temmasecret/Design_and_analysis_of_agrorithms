@@ -12,6 +12,7 @@ int main()
             scanf("%d",&Map[i][j]);
         }
     }
+    // Mảng kiểm tra xem đỉnh đã thắm
     int check[n];
     for (int i = 0;i<n;i++)
     {
@@ -20,6 +21,7 @@ int main()
     int cur = 0;
     check[cur] = 1;
     int cost_remain[n];
+    // Khởi tạo cho độ lớn đến vị trị i
     for (int i = 1 ; i< n;i++)
     {
         cost_remain[i] = 100000;

@@ -117,6 +117,7 @@ void Push_Graph(int oldpos,int newpos,Graph** Gr,float cost)
     InsertLast(newpos,cost,temp);
 }
 
+
 int main()
 {
     Graph* Gr = InitGraph(6);
