@@ -42,6 +42,32 @@ long long Fibonacii(long long n)
     return arr[idx];
 }
 
+long long fibo_ret(int n)
+{
+    if (n < 2) return n;
+    else return fibo_ret(n-1) + fibo_ret(n-2);
+}
+
+long long fibo_dynamic(int n)
+{
+    long long tg_0 = 0;
+    long long tg_1 = 1;
+    int k = 2;
+    if (n == 0) return tg_0;
+    while (k <=n)
+    {
+        long long tg = tg_1;
+        tg_1 += tg_0;
+        tg_0 = tg; 
+    }
+    return tg_1;
+}
+
+long long fibo_fuse(int n)
+{
+    return 0;
+}
+
 int main()
 {
     printf("%lld",Fibonacii(100));
