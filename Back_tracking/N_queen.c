@@ -22,7 +22,7 @@ void init(void)
         check_pass2[i] = 0;
     }
 }
-
+    
 void Show_result()
 {
     count++;
